@@ -11,7 +11,14 @@
 
 ## Documentation
 
-- [Quick Start](#quick-start)
+> Quick links — the full nav is in the top bar.
+
+- [Chat History](chats.md)
+- [Protocol](protocol.md)
+- [Agents Guide](agents.md)
+- [LLM Parameters](llm-parameters.md)
+- [Deployment Checklist](deployment.md)
+
 
 ## GitHub Pages
 

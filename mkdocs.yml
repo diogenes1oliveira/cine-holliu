@@ -6,6 +6,11 @@ docs_dir: docs
 
 nav:
   - Home: index.md
+  - Chat History: chats.md
+  - Protocol: protocol.md
+  - Agents Guide: agents.md
+  - LLM Parameters: llm-parameters.md
+  - Deployment Checklist: deployment.md
 
 theme:
   name: material
