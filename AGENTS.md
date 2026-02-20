@@ -72,3 +72,6 @@ The `PROMPT.md` section above is **legacy**; once `PROTOCOL.md` exists, skip it.
 8. **Parsing messages**: within a turn, scan for `### Message #M` → extract M →
    content ends at next `### Message #` or `## Turn #` or EOF.
 9. **Do this before `report_progress`** — the turn must be in the same commit.
+10. **Files Accessed**: after the ` ```markdown ` block, add `#### Files Accessed` (four `#`) listing
+    every repo-local file path read, created, or modified — one bullet per file with a brief note.
+    Omit if no repo files were accessed. Mark `<!-- reconstructed -->` on the header for past turns.

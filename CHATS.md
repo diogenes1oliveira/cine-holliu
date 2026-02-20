@@ -24,6 +24,10 @@ Unfortunately `https://github.com/diogenes1oliveira/the-one-monorepo` is current
 and I cannot access its contents. Please make it public and I'll mirror everything across.
 ~~~
 
+#### Files Accessed <!-- reconstructed -->
+
+- `PROMPT.md` — created with the original user request verbatim
+
 ---
 
 ## Turn #2 — Retry mirroring: repo still private
@@ -45,6 +49,10 @@ I've noted your message in `PROMPT.md`. Please check your repository visibility 
 and let me know when it's ready.
 ~~~
 
+#### Files Accessed <!-- reconstructed -->
+
+- `PROMPT.md` — read and appended with the second user message
+
 ---
 
 ## Turn #3 — Append previous messages as plaintext code blocks
@@ -63,6 +71,10 @@ as separate fenced plaintext code blocks.
 ~~~markdown
 Done! Appended both messages to `PROMPT.md` as two separate plaintext code blocks.
 ~~~
+
+#### Files Accessed <!-- reconstructed -->
+
+- `PROMPT.md` — read and appended with two plaintext code blocks
 
 ---
 
@@ -99,6 +111,20 @@ Updated `README.md` with Quick Start, Documentation, and GitHub Pages sections.
 **Security Summary:** CodeQL found 0 alerts. No vulnerabilities introduced.
 ~~~
 
+#### Files Accessed <!-- reconstructed -->
+
+- `PROMPT.md` — read and appended
+- `README.md` — updated with Quick Start, Documentation, and GitHub Pages sections
+- `.gitignore` — created
+- `.markdownlint.json` — created
+- `Justfile` — created
+- `mkdocs.yml` — created
+- `pyproject.toml` — created
+- `.dev/lint.py` — created
+- `.dev/md2html.py` — created
+- `.github/workflows/deploy.yml` — created
+- `docs/index.md` — created
+
 ---
 
 ## Turn #5 — Record all user messages as individual code blocks
@@ -126,6 +152,10 @@ Done! `PROMPT.md` now has one entry per user message:
 **Security Summary:** Documentation-only change. No vulnerabilities introduced.
 ~~~
 
+#### Files Accessed <!-- reconstructed -->
+
+- `PROMPT.md` — read and appended with two new user message code blocks
+
 ---
 
 ## Turn #6 — Add AGENTS.md; record both sides of each turn
@@ -149,6 +179,11 @@ Updated `PROMPT.md` with this turn accordingly.
 
 **Security Summary:** Documentation-only change. CodeQL found nothing to analyse; no vulnerabilities introduced.
 ~~~
+
+#### Files Accessed
+
+- `PROMPT.md` — read and appended with this turn's user and agent blocks
+- `AGENTS.md` — created with the conversation logging convention
 
 ---
 
@@ -188,6 +223,13 @@ Got it — and done! Here's what I've created/updated:
 **Security Summary:** Documentation-only changes. No vulnerabilities introduced.
 ~~~
 
+#### Files Accessed
+
+- `PROMPT.md` — read (for retroactive reconstruction) and appended for the last time
+- `AGENTS.md` — read and updated with the full CHATS.md protocol spec
+- `CHATS.md` — created with retroactive conversation history (Turns 1–7)
+- `PROTOCOL.md` — created as the canonical self-contained spec
+
 ---
 
 ## Turn #8 — Clarify: agent verbatim block = full response
@@ -219,3 +261,48 @@ Updated:
 
 **Security Summary:** Documentation-only changes. No vulnerabilities introduced.
 ~~~
+
+#### Files Accessed
+
+- `AGENTS.md` — read and updated (rule 3 clarified: full response, not summary)
+- `CHATS.md` — read and updated (Turn #8 appended)
+- `PROTOCOL.md` — read and updated (section 2.3 clarified)
+- `PROMPT.md` — read
+
+---
+
+## Turn #9 — Add Files Accessed footnote to agent messages
+
+### Message #0 — @human
+
+```
+Wow ! I loved it. Really, I mean it.
+
+Now one more thing: Now, I'd like to also get a nice list of paths like a foot note after the code. Like just a tiny section with a little smaller font title in the header (ie, just add a # more), detailing the paths of the files within this repo you had to read and access
+```
+
+### Message #1 — Agent
+
+Added a `#### Files Accessed` subsection spec to `PROTOCOL.md` (section 2.4) and `AGENTS.md` (rule 10).
+Retroactively added `#### Files Accessed` subsections to all existing agent messages in `CHATS.md` (Turns 1–8).
+Appended this turn (Turn #9) with its own Files Accessed list.
+
+~~~markdown
+Glad you loved it! 🎉
+
+Done — added a **Files Accessed** footnote section to every agent message. Here's what changed:
+
+- **`PROTOCOL.md`** — new section 2.4 specifying the `#### Files Accessed` subsection format:
+  one `#` deeper than the `###` message header, listing repo-local file paths with a brief note on what was done.
+- **`AGENTS.md`** — new rule 10 with the same specification.
+- **`CHATS.md`** — retroactively added `#### Files Accessed` subsections to all agent messages
+  in Turns 1–8; reconstructed entries are marked `<!-- reconstructed -->`. Turn #9 added fresh.
+
+**Security Summary:** Documentation-only changes. No vulnerabilities introduced.
+~~~
+
+#### Files Accessed
+
+- `AGENTS.md` — read and updated (rule 10 added: Files Accessed spec)
+- `CHATS.md` — read and fully rewritten with retroactive Files Accessed sections + Turn #9
+- `PROTOCOL.md` — read and updated (section 2.4 added: Files Accessed spec)

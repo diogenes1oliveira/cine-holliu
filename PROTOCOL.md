@@ -64,9 +64,24 @@ Agent responses consist of two parts:
 
 *(Remove the spaces inside the backtick sequences above.)*
 
----
+### 2.4 Files Accessed (agent message footnote)
 
-## 3. Updating CHATS.md
+After the verbatim ` ```markdown ` block, every agent message must include a
+`#### Files Accessed` subsection listing the repo-local file paths that were read,
+created, or modified during the turn. Use one bullet per file with a brief note.
+
+```
+#### Files Accessed
+
+- `path/to/file` — brief note (e.g. "read", "created", "updated")
+```
+
+- Use `#### ` (four `#`) — one level deeper than the `###` message header.
+- List **only files within this repository** (not external URLs or APIs).
+- For reconstructed turns, append `<!-- reconstructed -->` to the header line.
+- If no repo files were accessed, omit the section entirely.
+
+---
 
 ### 3.1 Normal update (current turn)
 
@@ -136,6 +151,7 @@ for line in chats_md_lines:
 | Agent message header | `### Message #1 — Agent` |
 | Human body | plain ` ``` ` fence, verbatim, no language tag |
 | Agent body | markdown prose + verbatim inside ` ```markdown ` fence |
+| Files Accessed footnote | `#### Files Accessed` — one bullet per repo file, brief note |
 | Reconstructed message | `<!-- reconstructed -->` after the `### Message` header |
 | When to update | before `report_progress`, same commit as other changes |
 | Source of truth | `CHATS.md` (not `PROMPT.md`) |
