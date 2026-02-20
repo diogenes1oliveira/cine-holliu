@@ -18,6 +18,7 @@
 - [Agents Guide](agents.md)
 - [LLM Parameters](llm-parameters.md)
 - [Deployment Checklist](deployment.md)
+- [Easter Egg](easteregg.md)
 
 
 ## GitHub Pages
