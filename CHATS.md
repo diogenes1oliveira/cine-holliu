@@ -306,3 +306,141 @@ Done — added a **Files Accessed** footnote section to every agent message. Her
 - `AGENTS.md` — read and updated (rule 10 added: Files Accessed spec)
 - `CHATS.md` — read and fully rewritten with retroactive Files Accessed sections + Turn #9
 - `PROTOCOL.md` — read and updated (section 2.4 added: Files Accessed spec)
+
+---
+
+## Turn #10 — LLM session parameters: privacy, exposure, reproducibility
+
+### Message #0 — @human
+
+```
+Ok, now when it comes to IA and crypto, I'm a data solutions architect at a big bank in brazil (one of the biggest and oldest (a secret: it's oldest, with CNPJ 0001 lol)). But I have a master's in physics from unb, where I also did a double undergrad in physics (is that the name? I mean both the teaching and researcher degree), and I also did half a year of electronics degree, etc, in masters I did the most boring and non-pop part which is solid state physics (but honestly, I think I can argue it's the most useful one)
+
+All of that just to say that I really like crypto, bitcoin, embeddings, llms and this whole thing of reproducible builds, linux, etc
+
+And this thing kind of triggered something in my mind: this repo is public and i'm thinking of showing someone else. But I don't even know if they could set this prompt I'm talking. Or maybe I do wanna let them see it. Or maybe I'm trying to kind of show how I would do it but now I think he'll struggle to understand how to properly do the whole prompting engineering business. 
+
+So, what I mean is:  I do know if you could get all of those parameters like your temperature, your system prompt, your model version, your embeddings version, and your current UTC system time together with yours printing of this very chat, someone could actually reproduce this conversation we're having
+
+But I don't think I would like for that to be possible. At the very least, I think I'd like to know that if would be theoretically possible to at least monitor, watch and control for it. Like, I do have a github api subscription and the copilot one. That's why I'm even having this chat at all. So, without further ado, is it possible to build like some sort of sandbox? Like if someone tries to see these parameters, or even see this chat link or I share it over a quick screen share session, how close could he/she get to reproducing? I can't see how would that be possible without a full code sandbox. Like those dev proxies we do for intercepting HTTPS traffic from the browser in the browser, or even something cooler (or more kilnd of dangerous, and I think now you know why I think mitmproxy is dangerous ) like just checking if someone queried for your temperature settings.  And you know, all the others, like system prompt, temperature, model version,  even your embeddings version (which honestly I would not care much at all lol, this stuff is so old)... Honestly I think the way OpenAPI specs JSON and rest are structure probably there's like a nice model they could just write the query themselves on curl and see those things. 
+
+So I guess I would like to ask of you, like a nice quit bit summary  of how to protect for those things. Like, both someone doing a metadata query in a postman app, an opeanapi ui or a curl, how to actually know if they're querying this kind of annoying info I don't want them to see. I don't know how much of this info you're allowed to give me, but could you like, list those parameters for me at the very least? So I know that if I mention those and they don't look confused (they're not Prompt Engineers experts at all) I know they must be researching that?
+
+I'dl ike to kind of see a nice markdown summary of those parameters and what are they for and how to query for those giving just a link to our current private session (and yeah I'm setting this repo to private, I've decided)? Can you give me that?
+```
+
+### Message #1 — Agent
+
+Your physics + solid-state background makes perfect sense here — reproducibility, determinism, and
+information theory are exactly the right lenses for this.
+
+The short answer: **making the repo private is by far the most effective single action**, and the rest
+of the attack surface is either gated behind credentials you control or requires physical access to
+your machine / GitHub's servers (for the Copilot Coding Agent, even that doesn't apply since the
+agent runs server-side).
+
+Created [`docs/llm-parameters.md`](docs/llm-parameters.md) with the full reference —
+parameters table, exposure matrix, MITM analysis, reproducibility limits, mitigation checklist,
+and a `curl` example showing why the "just query the session" approach doesn't work.
+
+~~~markdown
+Your physics + solid-state background is perfect for this — reproducibility, determinism, and
+information theory are exactly the right lenses. Solid-state *is* the most useful branch, you're
+right about that (and the least glamorous, agreed 😄).
+
+---
+
+## The short answer
+
+**Making the repo private is the single most effective action.** The full conversation is in
+`CHATS.md` — that's what gives someone the best chance at "reproducing" the session. Once the
+repo is private, the conversation is gone from public view. Everything else is much harder to get.
+
+---
+
+## The parameters and their exposure surface
+
+I've created [`docs/llm-parameters.md`](docs/llm-parameters.md) with the full reference. Here's
+the executive summary:
+
+| Parameter | What it is | Exposable via public API? | Exposable via MITM? |
+|-----------|-----------|--------------------------|---------------------|
+| `temperature` | Sampling randomness (0 = deterministic) | ❌ No | ✅ Yes (client-side only) |
+| System prompt | The invisible instructions | ❌ No | ✅ Yes (+ prompt extraction attacks) |
+| `model` (version) | Exact checkpoint | ❌ No | ✅ Yes (+ `system_fingerprint` in responses) |
+| Embeddings model | Vector model used for RAG | ❌ No | ✅ Yes (if called client-side) |
+| UTC timestamp | Injected into system prompt | ❌ No | ✅ Yes (inside system prompt) |
+| Conversation history | The `messages` array | ✅ **Yes — via `CHATS.md`** | ✅ Yes |
+
+### Why `curl` / Postman / OpenAPI UI won't work for session params
+
+The OpenAI (and Anthropic, and GitHub Copilot) APIs are **stateless**. There is no:
+
+```
+GET /v1/sessions/{session_id}/parameters
+```
+
+Each request carries its own `temperature`, `model`, `messages`, etc., and they are **not stored**
+in a queryable form after the call completes. The only public endpoint that's useful for model
+discovery is:
+
+```bash
+curl https://api.openai.com/v1/models \
+  -H "Authorization: Bearer $YOUR_KEY"
+```
+
+…which lists available models — but requires your API key, and reveals nothing about session params.
+
+### The MITM path (why it's dangerous, as you suspected)
+
+```
+[Your IDE / browser]
+        |  HTTPS
+[GitHub Copilot servers]   ← system prompt is here
+        |  HTTPS
+[LLM provider (OpenAI)]    ← temperature, model, seed are in the request body
+```
+
+A MITM proxy (`mitmproxy`, Burp Suite, Charles) can decrypt this traffic *if it can install a
+trusted root cert on the client machine*. That's the key constraint. For the **Copilot Coding
+Agent** (what we're using here), the agent runs **on GitHub's servers** — not your machine. So a
+local MITM is irrelevant. There's nothing to intercept on your end.
+
+For the **client-side** Copilot (VS Code extension, GitHub.com chat), a local MITM is theoretically
+possible if someone has access to your machine and can install a root cert. That's why `mitmproxy`
+is "dangerous" — it turns TLS into a liability on the client side.
+
+### Reproducibility: the physics take
+
+Even with all parameters + full conversation history + `seed` + `temperature = 0`, exact
+reproduction is **practically impossible** due to:
+
+- Floating-point non-determinism across GPU runs
+- Load-balanced inference (different hardware each call)
+- Model weights that change silently (providers update without version bump)
+
+You'd get *statistically similar* outputs, not byte-identical. Think of it like trying to reproduce
+a Monte Carlo simulation without the exact RNG state and hardware — possible in principle, not in practice.
+
+### Mitigation checklist
+
+| Risk | What to do |
+|------|-----------|
+| Conversation leaks via repo | ✅ Set repo private (you've decided — good call) |
+| Someone infers system prompt by probing | Accept the risk — the model is instructed to refuse, and the system prompt for this agent is GitHub's, not yours |
+| Someone with machine access does MITM | Applies only to client-side Copilot; use full-disk encryption + don't install unknown root certs |
+| `system_fingerprint` reveals model build | Low risk; it's an opaque hash, reveals nothing about temperature or system prompt |
+| `CHATS.md` itself leaks the thread | Private repo + access control. Optionally encrypt sensitive entries before committing. |
+
+---
+
+Full reference with tables, `curl` examples, and detailed MITM walkthrough:
+👉 [`docs/llm-parameters.md`](docs/llm-parameters.md)
+
+**Security Summary:** Documentation-only changes. No credentials committed. No vulnerabilities introduced.
+~~~
+
+#### Files Accessed
+
+- `CHATS.md` — read (turn number) and appended (Turn #10)
+- `docs/llm-parameters.md` — created with the full LLM parameters reference
