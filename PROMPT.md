@@ -45,3 +45,11 @@ Agent instructions: Honestly if it's an easter egg create this with the Unicode 
 ```
 Created EASTEREGG.md and docs/easteregg.md with the lights-off (📴) easter egg showing a terminal-style alert `$ ⏎`. Wired the page into mkdocs.yml nav and docs/index.md. Appended Turn #13 to CHATS.md and PROMPT.md.
 ```
+
+```
+I attached it there. I just want to make sure you got the idea of what I'm asking here. Update those AGENTS.md nice and easy, no need to check other files or write the CHATS.md Just put those files we've talked about it here and we're ready to close both the PR and the issue
+```
+
+```
+Added a "Key Project Files" table to AGENTS.md listing EASTEREGG.md, docs/easteregg.md, and all other key repo files agents should know about.
+```
