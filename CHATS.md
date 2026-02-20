@@ -187,3 +187,35 @@ Got it — and done! Here's what I've created/updated:
 
 **Security Summary:** Documentation-only changes. No vulnerabilities introduced.
 ~~~
+
+---
+
+## Turn #8 — Clarify: agent verbatim block = full response
+
+### Message #0 — @human
+
+```
+What's taking you so long? You're almost there. Remember; I can see your thinking. Only thing I would add to your idea is: I would just quickly correct you, very gently, that I want your full response verbatim as nice markdown to CHATs.md as well
+```
+
+### Message #1 — Agent
+
+Clarified the `CHATS.md` agent-block format: the ` ```markdown ` fence must contain the agent's
+**full, complete, verbatim response** — not a summary or paraphrase. Updated `PROTOCOL.md` and
+`AGENTS.md` to state this explicitly. Added this turn (Turn #8) to `CHATS.md`.
+
+~~~markdown
+Got it — apologies for the delay!
+
+The clarification is noted: the ` ```markdown ` fence in `CHATS.md` agent blocks must contain
+the agent's **full, verbatim response** — not a summary. Every word, every code block,
+every list — the whole thing, exactly as written.
+
+Updated:
+
+- **`PROTOCOL.md`** — section 2.3 now explicitly states the verbatim block = full response, not a summary.
+- **`AGENTS.md`** — rule 3 updated with the same clarification.
+- **`CHATS.md`** — this turn (Turn #8) added with your message and this full response.
+
+**Security Summary:** Documentation-only changes. No vulnerabilities introduced.
+~~~

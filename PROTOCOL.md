@@ -48,8 +48,9 @@ Agent responses consist of two parts:
 
 1. **Prose** — a nicely formatted markdown summary using `code` spans for technical
    terms, **bold** for emphasis, lists for enumerations, etc.
-2. **Verbatim block** — the agent's actual reply inside a fenced `markdown` block,
-   preserving all markdown formatting from the original comment.
+2. **Verbatim block** — the agent's **complete, full** reply inside a fenced `markdown`
+   block. This must be the **entire** agent response — every word, every code block,
+   every list — verbatim. Not a summary. Not a paraphrase. The whole thing.
 
 ```
 ### Message #1 — Agent

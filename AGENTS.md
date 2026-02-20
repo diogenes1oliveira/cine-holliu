@@ -60,7 +60,8 @@ The `PROMPT.md` section above is **legacy**; once `PROTOCOL.md` exists, skip it.
 
 1. **Human is always `#0`** and always starts every turn.
 2. **Human blocks**: plain ` ``` ` fence, no language tag, verbatim text only.
-3. **Agent blocks**: formatted markdown prose **+** verbatim inside a ` ```markdown ` fence.
+3. **Agent blocks**: formatted markdown prose **+** the agent's **full, complete, verbatim**
+   response inside a ` ```markdown ` fence. Not a summary — the entire reply.
 4. **Turn numbers** are sequential from 1 — never skip or reuse.
 5. **Missing turns** → reconstruct from `PROMPT.md`, commit history, and context.
    Mark reconstructed messages with `<!-- reconstructed -->` on the header line.
