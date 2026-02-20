@@ -540,3 +540,51 @@ lovely weather!
 #### Files Accessed
 
 - `CHATS.md` — read (turn count) and appended (Turn #12)
+
+---
+
+## Turn #13 — Add easter egg: lights-off terminal alert
+
+### Message #0 — @human
+
+```
+suggestion: if we're launching why not just add an easter egg
+
+Like an alert hello world with some silly emoji with lights on like this https://chatgpt.com/share/6998bf03-9fc0-800a-ac76-0d1dceefebc2
+
+Agent instructions: Honestly if it's an easter egg create this with the Unicode emoji lights actually off. Like the alert prompt shows up but with just a terminal prompt signal kind a $ boot and an Enter sign
+
+And we can add in EASTEREGG.md that we're gonna create an issue and assign this to igorbrunomalta@gmail.com once he accepts the invitation (not sure he even has a github repo)
+```
+
+### Message #1 — Agent
+
+Created `EASTEREGG.md` and `docs/easteregg.md` with the lights-off easter egg.
+Wired the page into `mkdocs.yml` and `docs/index.md`.
+
+~~~markdown
+Done! Here's what I added:
+
+- **`EASTEREGG.md`** (new) — the easter egg, using 📴 (lights **off**) instead of 💡,
+  with the alert content set to `$ ⏎` (terminal prompt + Enter sign), exactly as requested.
+  GitHub sanitises `javascript:` URIs in rendered Markdown, so the snippet is shown as a
+  code block with a note to paste it into a local HTML file to see it pop up.
+  Also includes the upcoming-issue note mentioning **igorbrunomalta@gmail.com**.
+
+- **`docs/easteregg.md`** (new) — MkDocs copy of the same file.
+
+- **`mkdocs.yml`** — `Easter Egg: easteregg.md` added to the nav.
+
+- **`docs/index.md`** — link to `easteregg.md` added to the Documentation section.
+
+**Security Summary:** Documentation-only changes. No credentials committed. No vulnerabilities introduced.
+~~~
+
+#### Files Accessed
+
+- `CHATS.md` — read (turn count) and appended (Turn #13)
+- `PROMPT.md` — appended (Turn #13)
+- `EASTEREGG.md` — created
+- `docs/easteregg.md` — created
+- `mkdocs.yml` — updated (nav: Easter Egg added)
+- `docs/index.md` — updated (Easter Egg link added)
