@@ -1,0 +1,30 @@
+[project]
+name = "cine-holliu"
+version = "0.1.0"
+description = "A drugless trip through the Fundamentals of Prompt Engineering"
+readme = "./README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+  "markdown>=3.5",
+  "mkdocs>=1.6.1,<2.0",
+  "mkdocs-material>=9.7.1",
+  "pathspec>=0.12.0",
+  "pyyaml>=6.0",
+]
+
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+native-tls = true
+package = false
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501", "B008"]
