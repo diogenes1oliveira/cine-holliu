@@ -514,3 +514,29 @@ Enjoy your walk — well earned! 🌤️ Here's what I did:
 - `docs/deployment.md` — created (new deployment checklist)
 - `docs/index.md` — updated Documentation section with links
 - `mkdocs.yml` — updated nav (6 pages)
+
+---
+
+## Turn #12 — Goodbye (for real this time)
+
+### Message #0 — @human
+
+```
+---
+
+> Oh, sorry, just forgot to turn off the computer. Just came to say goodbye again lol
+```
+
+### Message #1 — Agent
+
+Goodbye again! 🌳 The computer will still be here. Go enjoy the walk!
+
+~~~markdown
+Goodbye again! 🌳 No worries at all — the repo, the docs, the checklist, and this whole
+conversation log will all be right here whenever you get back. Go enjoy the walk and the
+lovely weather!
+~~~
+
+#### Files Accessed
+
+- `CHATS.md` — read (turn count) and appended (Turn #12)
