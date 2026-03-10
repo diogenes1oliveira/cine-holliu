@@ -1,19 +1,23 @@
 # 🥚 Easter Egg
 
-Click below — but don't expect the lights to actually turn on.
+The lights are on. 💡
+
+```javascript
+alert("\u{1F4A1} Hello World");
+```
+
+> **Note:** GitHub sanitizes `javascript:` URIs in rendered Markdown, so the snippet is
+> shown as a code block. Paste it into your browser's developer console to see the lights
+> actually turn on.
+
+---
+
+## How We Got Here
+
+It started with a lights-**off** terminal prompt:
 
 ```html
 <a href="javascript:alert('$ ⏎')">📴 Balexa, lights on please</a>
 ```
 
-> **Note:** GitHub sanitizes `javascript:` URIs in rendered Markdown, so the link
-> is intentionally shown as a code block. Copy it into a local HTML file and open
-> it in your browser to see the terminal-style alert pop up.
-
----
-
-## Upcoming
-
-We're going to open a dedicated issue for this easter egg and assign it to
-**igorbrunomalta@gmail.com** once he accepts the repository invitation
-(not sure he even has a GitHub account yet — watch this space).
+Then the issue said: *turn on the lights.* So here we are — `\u{1F4A1}` shining bright.

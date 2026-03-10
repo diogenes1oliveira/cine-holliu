@@ -25,10 +25,10 @@ A drugless trip through the Fundamentals of Prompt Engineering.
 
 ## Easter Egg
 
-Click below — but don't expect the lights to actually turn on.
+The lights are on. 💡
 
-```html
-<a href="javascript:alert('$ ⏎')">📴 Balexa, lights on please</a>
+```javascript
+alert("\u{1F4A1} Hello World");
 ```
 
 ---
