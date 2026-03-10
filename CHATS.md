@@ -588,3 +588,51 @@ Done! Here's what I added:
 - `docs/easteregg.md` — created
 - `mkdocs.yml` — updated (nav: Easter Egg added)
 - `docs/index.md` — updated (Easter Egg link added)
+
+---
+
+## Turn #14 — Turn on the lights easter egg
+
+### Message #0 — @human
+
+```
+You are working on an issue in the 'diogenes1oliveira/cine-holliu' repository.
+
+Consider the following problem statement:
+
+<issue_title>Turn on the lights</issue_title>
+<issue_description>> 💡 or 
+
+```javascript
+
+alert("\u{1F4A1} Hello World");
+```
+</issue_description>
+
+TODO: how to subscribe via email, browser push notification, android notification, whatsapp message, telegram chat, etc
+
+Implement the necessary changes to the repository so that the requirements specified in the problem statement are met.
+```
+
+### Message #1 — Agent
+
+Updated the easter egg from "lights off" to **lights on** — `alert("\u{1F4A1} Hello World")` now appears in `EASTEREGG.md`, `docs/easteregg.md`, and `README.md`, replacing the old terminal-prompt snippet with the lightbulb 💡 version.
+
+```markdown
+Implemented **"Turn on the lights"** 💡
+
+Updated three files to replace the lights-off (`📴 $ ⏎`) easter egg with the lights-on
+`alert("\u{1F4A1} Hello World")` snippet from the issue:
+
+- **`EASTEREGG.md`** — new content with the JS snippet, developer-console note, and a
+  "How We Got Here" section showing the old lights-off link.
+- **`docs/easteregg.md`** — identical update (MkDocs copy).
+- **`README.md`** — Easter Egg section updated to show the lit-up 💡 snippet.
+```
+
+#### Files Accessed
+
+- `CHATS.md` — read (turn count) and appended (Turn #14)
+- `EASTEREGG.md` — updated (lights-on easter egg)
+- `docs/easteregg.md` — updated (lights-on easter egg)
+- `README.md` — updated (Easter Egg section)
