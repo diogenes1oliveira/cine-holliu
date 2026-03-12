@@ -1,6 +1,7 @@
 site_name: Cine Holliu
 site_description: A drugless trip through the Fundamentals of Prompt Engineering
-site_url: https://diogenes1oliveira.github.io/cine-holliu/
+# Update to https://001481.xyz/ when serving from Cloudflare Pages
+site_url: https://001481.xyz/
 
 docs_dir: docs
 

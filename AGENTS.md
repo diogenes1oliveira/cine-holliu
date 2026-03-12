@@ -11,7 +11,7 @@ code blocks — **in this order**:
 
 ### Format
 
-~~~markdown
+````markdown
 ```
 <user message verbatim>
 ```
@@ -19,7 +19,7 @@ code blocks — **in this order**:
 ```
 <agent response summary>
 ```
-~~~
+````
 
 ### Rules
 
@@ -38,7 +38,7 @@ The `PROMPT.md` section above is **legacy**; once `PROTOCOL.md` exists, skip it.
 
 ### CHATS.md turn structure
 
-~~~markdown
+````markdown
 ## Turn #N — <short description>
 
 ### Message #0 — @human
@@ -54,7 +54,11 @@ The `PROMPT.md` section above is **legacy**; once `PROTOCOL.md` exists, skip it.
 ```markdown
 <verbatim agent reply, all markdown formatting preserved>
 ```
-~~~
+
+#### THOUGHTS
+
+<optional: short note on the agent’s reasoning for this turn — “how the brain worked”, e.g. what was considered, what was rejected, why. Kept brief. Omit if none to record.>
+````
 
 ### Rules (memorise these)
 
@@ -72,9 +76,13 @@ The `PROMPT.md` section above is **legacy**; once `PROTOCOL.md` exists, skip it.
 8. **Parsing messages**: within a turn, scan for `### Message #M` → extract M →
    content ends at next `### Message #` or `## Turn #` or EOF.
 9. **Do this before `report_progress`** — the turn must be in the same commit.
-10. **Files Accessed**: after the ` ```markdown ` block, add `#### Files Accessed` (four `#`) listing
-    every repo-local file path read, created, or modified — one bullet per file with a brief note.
-    Omit if no repo files were accessed. Mark `<!-- reconstructed -->` on the header for past turns.
+10. **THOUGHTS**: after the ` ```markdown ` block, add `#### THOUGHTS` (four `#`) with a short
+    note on the agent's reasoning for the turn — what was considered, what was rejected, why
+    (like "showing how the brain works"). Optional but encouraged; omit if nothing to record.
+11. **Files Accessed**: after THOUGHTS (or after the verbatim block if THOUGHTS omitted), add
+    `#### Files Accessed` listing every repo-local file path read, created, or modified — one
+    bullet per file with a brief note. Omit if no repo files were accessed. Mark
+    `<!-- reconstructed -->` on the header for past turns.
 
 ---
 
@@ -82,14 +90,14 @@ The `PROMPT.md` section above is **legacy**; once `PROTOCOL.md` exists, skip it.
 
 Files every agent should know exist in this repository:
 
-| File | Purpose |
-|------|---------|
-| `PROMPT.md` | Legacy per-turn conversation log (append-only, superseded by `CHATS.md`) |
-| `CHATS.md` | Canonical conversation log — primary protocol |
-| `PROTOCOL.md` | Self-contained spec for the `CHATS.md` format |
-| `AGENTS.md` | This file — conventions and key-file reference for agents |
-| `EASTEREGG.md` | Launch easter egg: lights-off (📴) terminal-style alert `$ ⏎` + upcoming issue note |
-| `docs/easteregg.md` | MkDocs copy of `EASTEREGG.md` (served on the GitHub Pages site) |
-| `docs/llm-parameters.md` | LLM session-parameters reference (privacy, exposure, reproducibility) |
-| `docs/deployment.md` | Pre-flight deployment checklist |
-| `mkdocs.yml` | MkDocs site configuration and nav |
+| File                     | Purpose                                                                             |
+| ------------------------ | ----------------------------------------------------------------------------------- |
+| `PROMPT.md`              | Legacy per-turn conversation log (append-only, superseded by `CHATS.md`)            |
+| `CHATS.md`               | Canonical conversation log — primary protocol                                       |
+| `PROTOCOL.md`            | Self-contained spec for the `CHATS.md` format                                       |
+| `AGENTS.md`              | This file — conventions and key-file reference for agents                           |
+| `EASTEREGG.md`           | Launch easter egg: lights-off (📴) terminal-style alert `$ ⏎` + upcoming issue note |
+| `docs/easteregg.md`      | MkDocs copy of `EASTEREGG.md` (served on the GitHub Pages site)                     |
+| `docs/llm-parameters.md` | LLM session-parameters reference (privacy, exposure, reproducibility)               |
+| `docs/deployment.md`     | Pre-flight deployment checklist                                                     |
+| `mkdocs.yml`             | MkDocs site configuration and nav                                                   |

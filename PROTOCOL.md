@@ -40,7 +40,7 @@ formatting changes, inside a plain fenced code block (no language tag):
 ` ``
 ```
 
-*(Remove the spaces inside the backtick sequences above.)*
+_(Remove the spaces inside the backtick sequences above.)_
 
 ### 2.3 Agent message (Message #1 or higher)
 
@@ -52,7 +52,11 @@ Agent responses consist of two parts:
    block. This must be the **entire** agent response — every word, every code block,
    every list — verbatim. Not a summary. Not a paraphrase. The whole thing.
 
-```
+3. **THOUGHTS** (optional) — a short note on the agent's reasoning for this turn: what was
+   considered, what was rejected, why. "How the brain worked." Use `#### THOUGHTS` (four `#`),
+   placed **right below** the verbatim ` ```markdown ` block. Omit if there is nothing to record.
+
+````
 ### Message #1 — Agent
 
 <formatted markdown prose>
@@ -60,9 +64,13 @@ Agent responses consist of two parts:
 ` ```markdown
 <verbatim agent reply, all markdown preserved: code blocks, bold, lists, etc.>
 ` ```
-```
 
-*(Remove the spaces inside the backtick sequences above.)*
+#### THOUGHTS
+
+<optional: agent reasoning for this turn — brief. Omit if none.>
+````
+
+_(Remove the spaces inside the backtick sequences above.)_
 
 ### 2.4 Files Accessed (agent message footnote)
 
@@ -144,14 +152,15 @@ for line in chats_md_lines:
 
 ## 5. Quick-reference cheat sheet
 
-| Element | Format |
-|---------|--------|
-| Turn header | `## Turn #N — <description>` |
-| Human message header | `### Message #0 — @human` |
-| Agent message header | `### Message #1 — Agent` |
-| Human body | plain ` ``` ` fence, verbatim, no language tag |
-| Agent body | markdown prose + verbatim inside ` ```markdown ` fence |
+| Element                 | Format                                                       |
+| ----------------------- | ------------------------------------------------------------ |
+| Turn header             | `## Turn #N — <description>`                                 |
+| Human message header    | `### Message #0 — @human`                                    |
+| Agent message header    | `### Message #1 — Agent`                                     |
+| Human body              | plain ` ``` ` fence, verbatim, no language tag               |
+| Agent body              | markdown prose + verbatim inside ` ```markdown ` fence       |
+| THOUGHTS (optional)     | `#### THOUGHTS` — short note on agent reasoning for the turn |
 | Files Accessed footnote | `#### Files Accessed` — one bullet per repo file, brief note |
-| Reconstructed message | `<!-- reconstructed -->` after the `### Message` header |
-| When to update | before `report_progress`, same commit as other changes |
-| Source of truth | `CHATS.md` (not `PROMPT.md`) |
+| Reconstructed message   | `<!-- reconstructed -->` after the `### Message` header      |
+| When to update          | before `report_progress`, same commit as other changes       |
+| Source of truth         | `CHATS.md` (not `PROMPT.md`)                                 |
